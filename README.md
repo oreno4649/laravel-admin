@@ -97,6 +97,13 @@ $ cd ./laravel-admin
 $ composer run phpstan
 ```
 
+### php cs fixer
+
+```bash
+$ cd ./laravel-admin
+$ composer run phpcsfixer
+```
+
 ## Extensions
 
 | Extension                                        | Description                              | laravel-admin                              |
