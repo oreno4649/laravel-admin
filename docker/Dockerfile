@@ -1,4 +1,4 @@
-# ビルド時にPHPバージョンを指定できるように引数を定義
+# Arguments defined so that PHP version can be specified at build time
 ARG PHP_VERSION=8.2
 
 FROM php:${PHP_VERSION}-fpm
