@@ -534,10 +534,15 @@ EOT;
         /** @phpstan-ignore-next-line Parameter #1 $string of function substr expects string, string|false given. */
         $configs = substr($configs, 1, strlen($configs) - 2);
         $dropdownParent = $this->asModal ? '$("' . static::$modalSelectorName . ' .modal-dialog")' : 'null';
+
+        // No escapeMarkup override here: the results and the selected value come from the server
+        // (record labels), so select2's default html escaping has to stay on.
+        // Only a select with fixed (non-ajax) options that are trusted html turns it off, see escapeMarkup().
+
         // Ensure selector is string for heredoc usage
         $selector = $this->getElementClassSelector();
         $selectorString = is_array($selector) ? implode(',', $selector) : (string) $selector;
-        
+
         $this->script = <<<EOT
 
 $("{$selectorString}").not('.admin-added-select2').select2({
@@ -568,10 +573,7 @@ $("{$selectorString}").not('.admin-added-select2').select2({
     cache: true
   },
   $configs,
-  dropdownParent: $dropdownParent,
-  escapeMarkup: function (markup) {
-      return markup;
-  }
+  dropdownParent: $dropdownParent
 }).addClass('admin-added-select2');
 
 EOT;
