@@ -212,6 +212,8 @@ EOT;
         /** @phpstan-ignore-next-line argument.type */
         $configs = substr($configs, 1, strlen($configs) - 2);
 
+        // No escapeMarkup override here: the results and the selected value come from the server
+        // (record labels), so select2's default html escaping has to stay on.
         $this->script = <<<EOT
 
 $(".{$this->getElementClass()}").select2({
@@ -241,10 +243,7 @@ $(".{$this->getElementClass()}").select2({
     },
     cache: true
   },
-  $configs,
-  escapeMarkup: function (markup) {
-      return markup;
-  }
+  $configs
 });
 
 EOT;
