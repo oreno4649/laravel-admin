@@ -166,7 +166,7 @@ class Admin
     }
 
     /**
-     * Left sider-bar menu.
+     * Left sidebar menu.
      *
      * @return array<mixed>
      */
